@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: 'Segoe UI';
+    }
+     .container {
+         width: 100vw;
+         height: 100vh;
+         background: #6C7A89;
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center
+     }
+     .box {
+         width: 900px;
+         height: 80vh;
+         background: #fff;
+         border-radius: 5px;
+         display: flex;
+         flex-direction: row;
+         /* border:1px solid white;
+        border-radius: 10px;
+         box-shadow: 2px 2px 10px 0 rgb(36, 36, 36);*/
+     }
+     .corner{
+         margin: 0;
+         padding: 0;
+         width: 75px;;
+         height: 100%;
+         background: #303841;
+         border-top-left-radius: 5px;
+         border-bottom-left-radius: 5px;
+         float:left;
+     }
+
+     .balls{
+         width: 100%;
+         height: 5%;
+         background:#303841;
+         border-top-left-radius: 5px;
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+         font-size: 30px;
+         color:#5B6670;
+     }
+     .caixa{
+         width: 675px;
+         height: 100%;
+         background: #EAEAEA;
+     }
+
+
+     .indi{
+         height: 10%;
+         width: 100%;
+         background: #363E47;
+     }
+     .pessoa{
+         height: 100%;
+         width:5%;
+         background:#56D98D;
+         float:left;
+     }
+
+     .foto img{
+         border-radius: 100%;
+         border: 2px white;
+         float:left;
+         height: 40px;
+         width: 40px;
+         margin-left: 10px;
+         margin-top: 5px;
+     }
+     .quadrado{
+         position: relative;
+         padding: 20px;
+
+     }
+     .quadrado a{
+         margin-top: 57vh;
+         text-decoration: none;
+         font-size: 25px;
+         color: rgb(158, 158, 158);
+     }
+
+     .caixa .caixa-top{
+         height: 15%;
+         width: 100%;
+         background: #F2F7F7;
+         position: relative;
+     }
+     .caixa-top .chatname{
+         background: #363E47;
+         float: left;
+         height: 100%;
+         width: 30%;
+         border-left: 1px solid #303841;
+         font-size: 20px;
+
+     }
+     .caixa .caixa-top:before{
+        content: '';
+        position: absolute;
+        margin-top: 30px;
+        width: 20px;
+        height: 20px;
+        /*left:-5px;*/
+        right: -10px;
+        border-radius: 100px;
+        background: #F2F7F7;
+     }
+
+     .caixa .membros{
+         float: left;
+         background: #363E47;
+         width: 30%;
+         height: 84.8%;
+         border-top: 2px solid #303841;
+         border-left: 1px solid #303841;
+     }
+        .chatbox{
+         background: #F2F7F7;
+         width: 100%;
+         height: 84.6%;
+         border-top: 2px solid #EAEAEA;
+     }
+
+    /*chatbox*/
+    .chatbox::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+.chatbox::-webkit-scrollbar-track {
+    background-color: rgba(128, 122, 122, 0.2);
+    z-index: 1;
+    border-radius: 50px;
+}
+ 
+.chatbox::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 50px;
+}
+
+.chatbox .message{
+    margin-bottom: 3px;
+    box-sizing: border-box;
+}
+
+.message.me{
+    text-align: right;
+}
+
+.chatbox .message span{
+    border-radius: 5px;
+    height: auto;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 15px;
+    margin-top: 5px;
+    display: inline-block;
+    color: #CCD2D9;
+    background-color: white;
+    position: relative;
+}
+/*teste da seta*/
+.chatbox .message span:before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    /*left:-5px;*/
+    right: -5px;
+    background:white;
+    -webkit-transform: rotate(45deg);/*gira o quadrado em 90graus*/
+
+}
+
+.message.me span{
+    border-radius: 5px;
+    height: auto;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 15px;
+    display: inline-block;
+    color: white;
+    background-color: #50DA9D;
+    position: relative;    
+}
+.message.me span:before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -5px;
+    background:#50DA9D;
+    -webkit-transform: rotate(45deg);/*gira o quadrado em 90graus*/
+
+}
+/*membros*/
+.membros::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+.membros::-webkit-scrollbar-track {
+    background-color: rgba(128, 122, 122, 0.2);
+    z-index: 1;
+    border-radius: 50px;
+}
+ 
+.membros::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 50px;
+}
+
+.membros .contact{
+    width: 100%;
+    height: 60px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #DBDCDD;
+    font-size: 15px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /*font-weight: bold;*/
+}
+
+.membros .contact.active{
+    background-color: #303841;/*cor do fundo do usuário*/
+}
+
+.membros .contact:hover{
+    background-color: #535B66;
+}
+
+.membros .contact .icon{
+    float: left;
+    width: 30px;
+    margin-top: 10px;
+    margin-right: 9px;
+}
+
+.membros .contact .icon img{
+    height: 30px;
+    width: 100%;
+    background-color: #bbb;
+    border-radius: 50%;
+}
+
+.membros .contact .name{
+    line-height: 50px;
+}
+.usuario{
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    color: #404852;
+    font-weight: bold;
+    padding-left: 100px;
+    padding-top: 20px;
+
+}
+.login{
+    color: #AAB6C1;
+    font-size: 30px;
+    float: right;
+    text-decoration: none;
+    padding-right: 20px;
+    padding-top: 20px;
+
+
+}
+.chatname span{
+    text-align: center;
+    float: left;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 50px;
+    background: #404852;
+    color: #646D77;
+    font-size: 17px;
+}
+
+.chatname span a i{
+    color:gray;
+    margin-right: 10px;
+}
+.bolinha{
+    height: 8px;
+    width: 8px;
+    background: #50DA9D;
+    float: left;
+    border-radius: 50px;
+}
+.perfil img{
+    border-radius: 100px;
+    height: 120px;
+    width: 120px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+
+     
+
+</style>
+<body>
+        <div class="container">
+            <div class="box">
+                <div class="corner">
+                    <div class="balls"><i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="indi">
+                    <div class="pessoa"></div>
+                <div class="foto"><img src="24456720.jpg"></div></div>
+                <div class="quadrado" ><a href="#" title="Sair" class="fas fa-sign-out-alt"></a>
+                </div></div>
+                <div class="caixa">
+                    <header class="caixa-top">
+                        <div class="chatname"><span><a href="#" title="grupo"><i class="fas fa-search"></i></a>Chat Name</span></div>
+                        <div class="login"><a href="algum_link.html" title="Entrar"><i style= "color: #AAB6C1;" class="fas fa-sign-in-alt"></i></a></div>
+                        <div style="margin-left: 120px;" class="usuario"></div><div style="padding-left: 13px; float:left;"><div class="bolinha"></div>Online</div>
+                    </header>
+                    <div class="membros"></div>
+                    <div class="chatbox"></div>
+                </div>
+                <div class="perfil"><img src="24456720.jpg"></div>
+                
+
+
+                </div>
+             </div>
+</body>
+<script>
+    let contatos = [
+    { 
+      usuario: "joao03",
+      mensagens: [
+       {
+         usuario: "joao03",
+         texto: "Tudo bem?"
+       },
+       {
+         usuario: "victor23",
+         texto: "Tudo Tranqs"
+       },
+       {
+          usuario: "joao03",
+          texto: "Que bom"
+        }
+      ]
+     },
+     { 
+       usuario: "maria2000",
+       mensagens: [
+         {
+           usuario: "maria2000",
+           texto: "Na paz?"
+         },
+         {
+           usuario: "victor23",
+           texto: "Show"
+         },
+         {
+           usuario: "maria2000",
+           texto: "Que bom"
+         }
+       ]
+     },
+     { 
+       usuario: "robson_alves",
+       mensagens: [
+         {
+           usuario: "victor03",
+           texto: "Bom?"
+         },
+         {
+           usuario: "robson_alves",
+           texto: "Bom"
+         },
+         {
+           usuario: "victor03",
+           texto: "Que bom"
+         }
+       ]
+     }
+   ];
+   
+   
+   let contactsList = document.querySelector(".membros");
+   let messages = document.querySelector(".chatbox");
+   let nameContact = document.querySelector(".usuario");
+   let contatosHtml = [];
+   
+   function mostrarMensagens(contato){
+     let mensagens = contato.mensagens;
+     let name = document.createTextNode(contato.usuario);
+    
+     nameContact.innerHTML = "";
+     messages.innerHTML = "";
+     
+     nameContact.appendChild(name);
+     
+     for(let i = 0, size = mensagens.length; i < size; i++){
+       let mensagem = mensagens[i];
+       let message = document.createElement("div");
+       let span = document.createElement("span");
+       let text = document.createTextNode(mensagem.texto);
+       
+       span.appendChild(text);
+       message.classList.add("message");
+       
+       message.appendChild(span);
+       
+       if(contato.usuario != mensagem.usuario){
+         message.classList.add("me");
+       }
+       
+       messages.appendChild(message);
+     }
+   }
+   
+   function mostrarContato(contato){
+     let contact = document.createElement("div");
+     let icone = document.createElement("div");
+     let img = document.createElement("img");
+     let nameContact = document.createElement("span");
+     let textName = document.createTextNode(contato.usuario);
+     
+     nameContact.classList.add("name");
+     nameContact.appendChild(textName);
+     img.src = "https://cdn.pixabay.com/photo/2016/11/14/17/39/person-1824147_960_720.png";
+     
+     icone.classList.add("icon");
+     icone.appendChild(img);
+     
+     contact.appendChild(nameContact);
+     contact.appendChild(icone);
+     contact.classList.add("contact");
+     
+     contactsList.appendChild(contact);
+     contatosHtml.push(contact);
+     
+     contact.addEventListener("click", function(){
+       mostrarMensagens(contato);
+       
+       for(let i = 0, size = contatosHtml.length; i<size; i++){
+         contatosHtml[i].classList.remove("active");
+       }
+       
+       this.classList.add("active");
+     });
+   }
+   
+   
+   window.addEventListener("load", function(){
+     for(let i=0, size = contatos.length; i<size; i++){
+       mostrarContato(contatos[i]);
+     }
+   });
+</script>
+</html>
